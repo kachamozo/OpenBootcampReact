@@ -8,6 +8,7 @@ import Ejemplo2 from './hooks/Ejemplo2';
 import MiComponenteConContexto from './hooks/Ejemplo3';
 import Ejemplo4 from './hooks/Ejemplo4';
 import SaludoStyle from './components/pure/SaludoStyle';
+import Father from './components/container/Father';
 
 function App() {
 	return (
@@ -26,7 +27,8 @@ function App() {
 						etiqueta de cierre
 					</h3>
 				</Ejemplo4> */}
-				<SaludoStyle name='Roly' />
+				{/* <SaludoStyle name='Roly' /> */}
+				<Father />
 			</header>
 		</div>
 	);
