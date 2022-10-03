@@ -34,15 +34,40 @@ function TaskList() {
 
 	// Control del ciclo de vida del componente
 	useEffect(() => {
-		console.log('Task State has been modified');
+		console.log('El estado de la tarea ha sido modificado');
 		setLoading(false);
 		return () => {
-			console.log('TaskList component is going to unmount...');
+			console.log('El componente TaskList se va desmontar');
 		};
 	}, [tasks]);
 
-	const changeCompleted = (id) => {
-		console.log('TODO: Cambiar estado de una tarea');
+	const completeTask = (task) => {
+		console.log('Complete this Task: ', task);
+		/**
+		 * Buscamos el indice de la tarea
+		 */
+		const index = tasks.indexOf(task);
+		const tempTasks = [...tasks];
+		tempTasks[index].completed = !tempTasks[index].completed;
+		setTasks(tempTasks);
+	};
+
+	const deleteTask = (task) => {
+		console.log('Delete this Task: ', task);
+		/**
+		 * Buscamos el indice de la tarea
+		 */
+		const index = tasks.indexOf(task);
+		const tempTasks = [...tasks];
+		tempTasks.splice(index, 1);
+		setTasks(tempTasks);
+	};
+
+	const addTask = (task) => {
+		console.log('Add this Task: ', task);
+		const tempTasks = [...tasks];
+		tempTasks.push(task);
+		setTasks(tempTasks);
 	};
 
 	return (
@@ -71,14 +96,21 @@ function TaskList() {
 							<tbody>
 								{/* TODO: iterar sobre una lista de tareas */}
 								{tasks.map((task, index) => {
-									return <TaskComponent key={index} task={task} />;
+									return (
+										<TaskComponent
+											key={index}
+											task={task}
+											completed={completeTask}
+											remove={deleteTask}
+										/>
+									);
 								})}
 							</tbody>
 						</table>
 					</div>
-					<TaskForm />
 				</div>
 			</div>
+			<TaskForm add={addTask} />
 		</div>
 	);
 }

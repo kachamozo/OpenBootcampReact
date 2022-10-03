@@ -17,7 +17,7 @@ function App() {
 				<img src={logo} className='App-logo' alt='logo' />
 				{/* <Saludo name='Roly' /> */}
 				{/* <SaludoF name='Gonzalo' /> */}
-				{/* <TaskList /> */}
+				<TaskList />
 				{/* <Ejemplo1 /> */}
 				{/* <Ejemplo2 /> */}
 				{/* <MiComponenteConContexto /> */}
@@ -28,7 +28,7 @@ function App() {
 					</h3>
 				</Ejemplo4> */}
 				{/* <SaludoStyle name='Roly' /> */}
-				<Father />
+				{/* <Father /> */}
 			</header>
 		</div>
 	);

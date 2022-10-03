@@ -4,7 +4,7 @@ import { Task } from '../../models/task.class';
 import { LEVELS } from '../../models/levels.enum';
 import('../../styles/task.scss');
 
-function TaskComponent({ task }) {
+function TaskComponent({ task, completed, remove }) {
 	useEffect(() => {
 		console.log('Created Task');
 		return () => {
@@ -14,7 +14,7 @@ function TaskComponent({ task }) {
 
 	/**
 	 *
-	 * @returns taskLevelBadge: Funcion que retrona un badge de color
+	 * @returns taskLevelBadge: Funcion que retorna un badge de color
 	 * dependiendo del tipo de level
 	 */
 
@@ -51,9 +51,19 @@ function TaskComponent({ task }) {
 	 */
 	const taskIconCompleted = () => {
 		if (task.completed) {
-			return <i className='bi-toggle-on text-success' />;
+			return (
+				<i
+					onClick={() => completed(task)}
+					className='bi-toggle-on text-success task-action'
+				/>
+			);
 		} else {
-			return <i className='bi-toggle-off' />;
+			return (
+				<i
+					onClick={() => completed(task)}
+					className='bi-toggle-off task-action'
+				/>
+			);
 		}
 	};
 	return (
@@ -71,13 +81,19 @@ function TaskComponent({ task }) {
 			<td>
 				{/* Sustituir por iconos */}
 				<span className='align-middle'>{taskIconCompleted()}</span>
-				<i className='bi-trash' style={{ color: 'tomato' }} />
+				<i
+					className='bi-trash task-action'
+					style={{ color: 'tomato' }}
+					onClick={() => remove(task)}
+				/>
 			</td>
 		</tr>
 	);
 }
 
 TaskComponent.propTypes = {
-	task: PropTypes.instanceOf(Task),
+	task: PropTypes.instanceOf(Task).isRequired,
+	completed: PropTypes.func.isRequired,
+	remove: PropTypes.func.isRequired,
 };
 export default TaskComponent;
